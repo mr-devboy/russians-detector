@@ -61,10 +61,10 @@
   </style>
   <body>
     <div id="app"></div>
-    <script type="module">
+    <script type="text/javascript">
       const app = document.querySelector('#app');
 
-      import('../src/index.js').then(({ isRussian }) => {
+      import('./src/index.js').then(({ isRussian }) => {
         const detector = document.createElement('h1');
         detector.innerHTML = `<pre>isRussian() === false;</pre>
         <b>Greetings, free citizen 👋🏻!</b>

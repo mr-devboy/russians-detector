@@ -18,7 +18,7 @@
     "www:clean": "npx shx rm -rf www/*",
     "src:build": "npx parcel build --no-source-maps",
     "build": "npm run dist:clean && npm run src:build",
-    "serve": "npm run www:clean && npx parcel static/index.html --dist-dir www"
+    "serve": "npm run www:clean && npx parcel index.html --dist-dir www"
   },
   "browserslist": {
     "production": [

@@ -3,7 +3,7 @@ import {
   RUSSIAN_CODE_ALPHA2,
   RUSSIAN_CODE_ALPHA3,
   PUNYCODE_PREFIX,
-} from './config';
+} from './config.js';
 
 export function isRussian() {
   const timeZone = Intl.DateTimeFormat()
