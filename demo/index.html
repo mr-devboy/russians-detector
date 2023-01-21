@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>russians-detector.js</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      font-family: sans-serif;
+    }
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    html,
+    body,
+    #app {
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    #app {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #50b050;
+      border: 10px solid #fff;
+    }
+
+    #app.russian-detected {
+      background: #8b1818;
+      border-style: dashed;
+    }
+
+    h1 {
+      color: #fff;
+      white-space: pre-line;
+      max-width: 550px;
+      font-weight: normal;
+      padding: 24px;
+      font-size: 24px;
+      font-weight: 300;
+    }
+
+    pre,
+    h1 {
+      margin: 0;
+    }
+
+    b {
+      font-size: 40px;
+    }
+  </style>
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      const app = document.querySelector('#app');
+
+      import('../src/index.js').then(({ isRussian }) => {
+        const detector = document.createElement('h1');
+        detector.innerHTML = `<pre>isRussian() === false;</pre>
+        <b>Greetings, free citizen 👋🏻!</b>
+        `;
+
+        if (isRussian()) {
+          detector.innerHTML = `<pre>isRussian() === true;</pre>
+            <b>Not so fast 😬!</b>
+
+            Folks, it seems a russian came to visit us 🤨. 
+            Yes, these are the ones who organize the genocide of free nations 🔪🩸. 
+            Hmm, what should we do with him 🧐?
+
+            🤫
+          `;
+          app.classList.add('russian-detected');
+        }
+        app.appendChild(detector);
+      });
+    </script>
+  </body>
+</html>
