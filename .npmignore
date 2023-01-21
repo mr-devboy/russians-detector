@@ -1,5 +1,6 @@
-.parcel-cache
-static
-www
 src
+www
+index.html
+.github
 .DS_Store
+.parcel-cache

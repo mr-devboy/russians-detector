@@ -1,9 +1,9 @@
 dist
 www
 *.tgz
+.DS_Store
 .parcel-cache
 .npm
 node_modules/
 *.log
 npm-debug.log*
-.DS_Store
