@@ -1,0 +1,58 @@
+{
+  "name": "russians-detector",
+  "description": "Detection of russians to further restrictions implementation.",
+  "version": "1.0.0",
+  "source": "src/index.js",
+  "module": "dist/index.es.js",
+  "main": "dist/index.js",
+  "targets": {
+    "main": {
+      "optimize": true
+    },
+    "module": {
+      "optimize": true
+    }
+  },
+  "scripts": {
+    "dist:clean": "npx shx rm -rf dist/*",
+    "www:clean": "npx shx rm -rf www/*",
+    "src:build": "npx parcel build --no-source-maps",
+    "build": "npm run dist:clean && npm run src:build",
+    "serve": "npm run www:clean && npx parcel static/index.html --dist-dir www"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mr-devboy/russians-detector.git"
+  },
+  "keywords": [
+    "russians",
+    "russian",
+    "is",
+    "is-russian",
+    "detector",
+    "identifier",
+    "checker",
+    "web",
+    "browser",
+    "pure",
+    "lightweight"
+  ],
+  "author": "Bohdan Yatsenko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mr-devboy/russians-detector/issues"
+  },
+  "homepage": "https://github.com/mr-devboy/russians-detector#readme"
+}

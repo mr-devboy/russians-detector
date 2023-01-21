@@ -1,0 +1,32 @@
+export const RUSSIAN_TIMEZONES = [
+  'asia/anadyr',
+  'asia/barnaul',
+  'asia/chita',
+  'asia/irkutsk',
+  'asia/kamchatka',
+  'asia/khandyga',
+  'asia/krasnoyarsk',
+  'asia/magadan',
+  'asia/novokuznetsk',
+  'asia/novosibirsk',
+  'asia/omsk',
+  'asia/sakhalin',
+  'asia/srednekolymsk',
+  'asia/tomsk',
+  'asia/ust-nera',
+  'asia/vladivostok',
+  'asia/yakutsk',
+  'asia/yekaterinburg',
+  'europe/astrakhan',
+  'europe/kaliningrad',
+  'europe/kirov',
+  'europe/moscow',
+  'europe/samara',
+  'europe/saratov',
+  'europe/simferopol',
+  'europe/ulyanovsk',
+  'europe/volgograd',
+];
+export const RUSSIAN_CODE_ALPHA2 = 'ru';
+export const RUSSIAN_CODE_ALPHA3 = 'rus';
+export const PUNYCODE_PREFIX = 'xn--';
