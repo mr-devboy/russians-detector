@@ -16,9 +16,11 @@ $ npm i -S russians-detector
 ## Usage
 
 ```js
-const isRussian = require('russians-detector').isRussian;
-// or
 import { isRussian } from 'russians-detector';
+// or
+const { isRussian } = require('russians-detector');
+// or
+const isRussian = require('russians-detector').isRussian;
 
 isRussian(); // => true | false
 ```
