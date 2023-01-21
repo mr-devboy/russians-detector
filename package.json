@@ -18,7 +18,8 @@
     "www:clean": "npx shx rm -rf www/*",
     "src:build": "npx parcel build --no-source-maps",
     "build": "npm run dist:clean && npm run src:build",
-    "serve": "npm run www:clean && npx parcel index.html --dist-dir www"
+    "serve": "npm run www:clean && npx parcel index.html --dist-dir www",
+    "deploy": "npm run build && npm version patch -m 'fix: Upgrade to version %s' && npm publish && git push"
   },
   "browserslist": {
     "production": [
