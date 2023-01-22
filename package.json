@@ -19,7 +19,7 @@
     "src:build": "npx parcel build",
     "build": "npm run dist:clean && npm run src:build",
     "serve": "npm run www:clean && npx parcel index.html --dist-dir www",
-    "version": "npx auto-changelog && git add CHANGELOG.md",
+    "version": "npx auto-changelog -p && git add CHANGELOG.md",
     "release:major": "npm run build && npm version major -m 'feat!: Upgrade to version %s' && git push && git push --tags && npm publish",
     "release:minor": "npm run build && npm version minor -m 'feat: Upgrade to version %s' && git push && git push --tags && npm publish",
     "release:patch": "npm run build && npm version patch -m 'fix: Upgrade to version %s' && git push && git push --tags && npm publish"
