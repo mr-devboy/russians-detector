@@ -4,6 +4,7 @@ import {
   RUSSIAN_CODE_ALPHA3,
   PUNYCODE_PREFIX,
 } from './config.js';
+import { getIP, getCountryByIP } from './helpers.js';
 
 export function isRussian() {
   const timeZone = Intl.DateTimeFormat()
@@ -28,4 +29,13 @@ export function isRussian() {
   } catch (e) {}
 
   return isRussianTimezone || (isRussianBrowserLanguage && isRussianReferrer);
+}
+
+export async function isRussianByIP() {
+  const ip = await getIP();
+  const country = await getCountryByIP(ip);
+
+  return [RUSSIAN_CODE_ALPHA2, RUSSIAN_CODE_ALPHA3].includes(
+    country.toLowerCase()
+  );
 }

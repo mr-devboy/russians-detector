@@ -7,13 +7,24 @@
     <title>russians-detector.js</title>
   </head>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=VT323&display=block');
+    :root {
+      --color-blue: #2945b2;
+      --color-green: #1c9f1c;
+      --color-red: #bc2727;
+      --color-primary: var(--color-blue);
+      --color-success: var(--color-green);
+      --color-error: var(--color-red);
+    }
+
     * {
       box-sizing: border-box;
     }
 
     html {
-      font-family: sans-serif;
+      font-family: 'VT323', sans-serif;
     }
+
     html,
     body {
       padding: 0;
@@ -22,67 +33,166 @@
 
     html,
     body,
-    #app {
+    .app {
       width: 100%;
       min-height: 100vh;
     }
 
-    #app {
+    .app {
       display: flex;
-      align-items: center;
       justify-content: center;
-      background: #50b050;
+      background: var(--color-primary);
       border: 10px solid #fff;
-    }
-
-    #app.russian-detected {
-      background: #8b1818;
-      border-style: dashed;
-    }
-
-    h1 {
       color: #fff;
-      white-space: pre-line;
-      max-width: 550px;
-      font-weight: normal;
-      padding: 24px;
+      padding: 0 40px 40px;
+    }
+
+    .app.russianNotDetected {
+      background: var(--color-success);
+    }
+
+    .app.russianDetected {
+      background: var(--color-error);
+      border-style: dashed;
+      animation: borderBlink 1s linear 5;
+    }
+
+    @keyframes borderBlink {
+      0% {
+        border-style: solid;
+      }
+      49% {
+        border-style: solid;
+      }
+      50% {
+        border-style: dashed;
+      }
+      100% {
+        border-style: dashed;
+      }
+    }
+
+    .appContent {
+      width: 100%;
+      max-width: 600px;
+      margin-top: -10px;
+    }
+
+    .checks {
+      padding: 0;
       font-size: 24px;
-      font-weight: 300;
-    }
-
-    pre,
-    h1 {
+      list-style-type: none;
       margin: 0;
+      text-align: left;
     }
 
-    b {
+    .checks em {
+      opacity: 0.5;
+    }
+
+    .appTitle {
+      font-size: 60px;
+      margin: 0;
+      color: var(--color-primary);
+      background: #fff;
+      text-align: center;
+    }
+
+    .app.russianDetected .appTitle {
+      color: var(--color-error);
+    }
+
+    .app.russianNotDetected .appTitle {
+      color: var(--color-success);
+    }
+
+    .resultTitle {
+      margin: 0;
+      padding: 0;
       font-size: 40px;
+    }
+
+    .app.russianDetected .resultTitle {
+      animation: textBlink 1s linear 5;
+    }
+
+    .resultDescription {
+      margin: 0;
+      padding: 0;
+      font-size: 24px;
+    }
+
+    .appTitle {
+      margin-bottom: 100px;
+    }
+
+    .checks {
+      margin-bottom: 60px;
+    }
+
+    .resultTitle {
+      margin-bottom: 20px;
+    }
+
+    @keyframes textBlink {
+      0% {
+        visibility: visible;
+      }
+      50% {
+        visibility: hidden;
+      }
+      100% {
+        visibility: hidden;
+      }
     }
   </style>
   <body>
-    <div id="app"></div>
+    <div id="app" class="app">
+      <div id="appContent" class="appContent">
+        <h1 class="appTitle">russians-detector.js</h1>
+      </div>
+    </div>
     <script type="text/javascript">
       const app = document.querySelector('#app');
+      const appContent = document.querySelector('#appContent');
 
-      import('./src/index.js').then(({ isRussian }) => {
-        const detector = document.createElement('h1');
-        detector.innerHTML = `<pre>isRussian() === false;</pre>
-        <b>Greetings, free citizen 👋🏻!</b>
-        `;
+      import('./src/index.js').then(async ({ isRussian, isRussianByIP }) => {
+        const checks = document.createElement('ul');
+        checks.classList.add('checks');
+        appContent.appendChild(checks);
 
-        if (isRussian()) {
-          detector.innerHTML = `<pre>isRussian() === true;</pre>
-            <b>Not so fast 😬!</b>
+        const isRussianCheckEl = document.createElement('li');
+        isRussianCheckEl.innerHTML = `isRussian() === ${isRussian()}; <em>// by different browser data<em>`;
+        checks.append(isRussianCheckEl);
 
-            Folks, it seems a russian came to visit us 🤨. 
-            Yes, these are the ones who organize the genocide of free nations 🔪🩸. 
+        const isRussianByIPCheckEl = document.createElement('li');
+        isRussianByIPCheckEl.classList.add('check');
+        isRussianByIPCheckEl.innerHTML = `isRussianByIP() ==> detecting...`;
+        checks.append(isRussianByIPCheckEl);
+
+        const isRussianIP = await isRussianByIP();
+        isRussianByIPCheckEl.innerHTML = `isRussianByIP() === ${isRussianIP}; <em>// by geolocation<em>`;
+
+        const resultTitleEl = document.createElement('h2');
+        resultTitleEl.classList.add('resultTitle');
+        const resultDescriptionEl = document.createElement('p');
+        resultDescriptionEl.classList.add('resultDescription');
+
+        if (isRussian() || isRussianIP) {
+          resultTitleEl.innerText = 'Russian detected! 😬';
+          resultDescriptionEl.innerText = `Folks, it seems a russian came to visit us 🤨.
+            Yes, these are the ones who organize the genocide of free nations 🔪🩸.
             Hmm, what should we do with him 🧐?
 
-            🤫
-          `;
-          app.classList.add('russian-detected');
+            🤫`;
+          app.classList.add('russianDetected');
+        } else {
+          resultTitleEl.innerText = '👋🏻 Greetings, free citizen!';
+          resultDescriptionEl.innerText = `Live long and prosper 🖖🏻.`;
+          app.classList.add('russianNotDetected');
         }
-        app.appendChild(detector);
+        appContent.appendChild(resultTitleEl);
+        appContent.appendChild(resultDescriptionEl);
       });
     </script>
   </body>
