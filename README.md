@@ -3,7 +3,7 @@
 > Returns true if visitor of your web resource is russian.
 > Do what you want with him, I don't care.
 
-Zero dependency, lightweight detector of russians clients (which does not use location detection by IP).
+Zero dependency, lightweight detector of russian clients (by different browser data and ip).
 
 ## Install
 
@@ -16,13 +16,15 @@ $ npm i -S russians-detector
 ## Usage
 
 ```js
-import { isRussian } from 'russians-detector';
+import { isRussian, isRussianByIP } from 'russians-detector';
 // or
-const { isRussian } = require('russians-detector');
+const { isRussian, isRussianByIP } = require('russians-detector');
 // or
 const isRussian = require('russians-detector').isRussian;
+const isRussianByIP = require('russians-detector').isRussianByIP;
 
 isRussian(); // => true | false
+isRussianByIP().then((result) => result); // => true | false
 ```
 
 ## Demo
