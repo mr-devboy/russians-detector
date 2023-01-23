@@ -43,6 +43,7 @@
       border: 10px solid #fff;
       color: #fff;
       padding: 0 40px 40px;
+      transition: background 500ms ease-out;
     }
 
     .app.russianNotDetected {
@@ -98,6 +99,7 @@
       color: var(--color-primary);
       background: #fff;
       text-align: center;
+      transition: color 500ms ease-out;
     }
 
     .app.russianDetected .appTitle {
@@ -142,13 +144,13 @@
 
     @keyframes textBlink {
       0% {
-        visibility: visible;
+        visibility: hidden;
       }
       50% {
         visibility: hidden;
       }
       100% {
-        visibility: hidden;
+        visibility: visible;
       }
     }
   </style>
