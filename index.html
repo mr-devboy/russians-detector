@@ -9,12 +9,10 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=VT323&display=block');
     :root {
-      --color-blue: #2945b2;
-      --color-green: #1c9f1c;
-      --color-red: #bc2727;
-      --color-primary: var(--color-blue);
-      --color-success: var(--color-green);
-      --color-error: var(--color-red);
+      --color-primary: #2945b2;
+      --color-success: #1c9f1c;
+      --color-error: #bc2727;
+      --color-inactive: #6a6a6a;
     }
 
     * {
@@ -49,6 +47,10 @@
 
     .app.russianNotDetected {
       background: var(--color-success);
+    }
+
+    .app.blockerDetected {
+      background: var(--color-inactive);
     }
 
     .app.russianDetected {
@@ -104,6 +106,10 @@
 
     .app.russianNotDetected .appTitle {
       color: var(--color-success);
+    }
+
+    .app.app.blockerDetected .appTitle {
+      color: var(--color-inactive);
     }
 
     .resultTitle {
@@ -179,13 +185,17 @@
           resultDescriptionEl.classList.add('resultDescription');
 
           if (isRussian() || isRussianIP) {
-            resultTitleEl.innerText = 'Russian detected! 😬';
+            resultTitleEl.innerText = '😬 Russian detected!';
             resultDescriptionEl.innerText = `Folks, it seems a russian came to visit us 🤨.
             Yes, these are the ones who organize the genocide of free nations 🔪🩸.
             Hmm, what should we do with him 🧐?
 
-            🤫`;
+            🤫 Shhh...`;
             app.classList.add('russianDetected');
+          } else if (isRussianIP === undefined) {
+            resultTitleEl.innerText = '🥸 Someone cares about safety.';
+            resultDescriptionEl.innerText = `There is nothing more to say 😒.`;
+            app.classList.add('blockerDetected');
           } else {
             resultTitleEl.innerText = '👋🏻 Greetings, free citizen!';
             resultDescriptionEl.innerText = `Live long and prosper 🖖🏻.`;

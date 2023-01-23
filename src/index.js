@@ -38,5 +38,6 @@ export function isRussianByIP() {
       return [RUSSIAN_CODE_ALPHA2, RUSSIAN_CODE_ALPHA3].includes(
         country.toLowerCase()
       );
-    });
+    })
+    .catch(() => undefined);
 }

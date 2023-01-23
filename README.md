@@ -24,7 +24,9 @@ const isRussian = require('russians-detector').isRussian;
 const isRussianByIP = require('russians-detector').isRussianByIP;
 
 isRussian(); // => true | false
-isRussianByIP().then((result) => result); // => true | false
+isRussianByIP().then((result) => result); // => true | false | undefined*
+
+// * – client blocks tracking or server response error
 ```
 
 ## Demo
