@@ -45,5 +45,5 @@ Russia has been waging wars and genocide against peaceful peoples for centuries.
 
 ### License
 
-Copyright © 2023, [Bohdan Yatsenko](https://github.com/jonschlinkert).
+Copyright © 2023, [Bohdan Yatsenko](https://github.com/mr-devboy).
 Released under the [MIT License](LICENSE).
